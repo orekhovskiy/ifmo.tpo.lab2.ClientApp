@@ -1,0 +1,13 @@
+.footer {
+    text-align: center;
+    height: 43px;
+    border-top: 2px solid grey;
+    background-color: #ededed;
+}
+
+app-learn {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -1,0 +1,24 @@
+input {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}
+
+.search {
+    margin-top: 20px;
+}
+
+.titles {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    border-width: 3px;
+    border-radius: 5px;
+    /*padding : 10px;*/
+}
+
+.btn-secondary {
+    cursor: default;
+}
