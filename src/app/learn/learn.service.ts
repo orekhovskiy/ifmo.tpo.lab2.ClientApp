@@ -10,7 +10,6 @@ export class LearnService {
     
     private baseUrl = 'https://localhost:44395/api/onetime/';
     // Receive messages from server within <interval> seconds.
-    private readonly interval = 5;
     private hubConnection: signalR.HubConnection;
 
     public availablePages: string[];
@@ -30,14 +29,15 @@ export class LearnService {
 
     // Receive from server
     public addBroadcastPageTitleListner = () => {
-        this.hubConnection.on('broadcastPageTitle', (data) => {
-            this.availablePages.push(data);
+        this.hubConnection.on('receivePageTitle', (title) => {
+            this.availablePages.push(title);
         });
     }
     
-    // Send to server
+    // Send to serverByTopic
     public broadcastPageTitle = (topic) => {
-        this.hubConnection.invoke('broadcastPageTitle', topic, this.interval)
+        var interval:number = parseInt(localStorage.getItem('interval'));
+        this.hubConnection.invoke('broadcastPageTitle', topic, interval)
         .catch(err => console.error(err));
     }
     
@@ -56,6 +56,6 @@ export class LearnService {
 
     // Get list of pages by Topic
     public getPages(topic):Observable<string[]> {
-        return this.http.get<string[]>(`${this.baseUrl}getPages?topic=${topic}`);
+        return this.http.get<string[]>(`${this.baseUrl}getPagesByTopic?topic=${topic}`);
     }
 }

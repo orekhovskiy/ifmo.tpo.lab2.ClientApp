@@ -15,7 +15,7 @@ export class LearnComponent implements OnInit {
   public allTitles: string[];
   public currentTitle: string;
   public error: string;
-  public pageContent: string;
+  public pageContent: any;
   
 
   constructor(private learnService: LearnService) { }
@@ -23,18 +23,17 @@ export class LearnComponent implements OnInit {
   ngOnInit(): void {
     this.learnService.startConnection();
     this.learnService.addBroadcastPageTitleListner();
-    this.pageContent = 'Find a topic to learn a cool content!';
-    this.topic = 'Learn a topic';
+    this.pageContent = '';
+    this.topic = '';
     this.allTitles = [];
     this.learnService.availablePages = [];
-    this.currentTitle = 'Learn a page';
+    this.currentTitle = '';
   }
 
   getPageContent(title:string):void {
     this.currentTitle = title;
     this.learnService.getPageContent(title)
       .subscribe( (content) => {
-        document.getElementById('pageContent').innerHTML = content;
         this.pageContent = content;
       }, (error: HttpErrorResponse) => {
         console.log(error);
@@ -47,7 +46,7 @@ export class LearnComponent implements OnInit {
   
   subscribe():void {
     var topic:string = (<HTMLInputElement>document.getElementById('topic')).value;
-    document.getElementById('pageContent').innerHTML = 'Find a topic to learn a cool content!';
+    this.pageContent = '';
     this.learnService.availablePages = [];
     this.allTitles = [];
     this.error='';
@@ -63,6 +62,7 @@ export class LearnComponent implements OnInit {
         }
         else {
           this.error='No data found by given Tpoic.';
+          this.pageContent = '';
         }
       }, (error: HttpErrorResponse) => {
         console.log(error);

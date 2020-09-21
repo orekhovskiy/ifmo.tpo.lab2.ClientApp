@@ -22,3 +22,10 @@ button {
 .btn-secondary {
     cursor: default;
 }
+.centered {
+    text-align: center;
+}
+
+#pageContent {
+    padding: 10px;
+}

@@ -1,1 +1,25 @@
-<p>about works!</p>
+<div class="container">
+    <h1>
+        Hello stranger!
+    </h1>
+    <p>
+        This application is designed for those who wants to learn some new cool topics.
+    </p>
+    <p>
+        All you have to do is visit our "Learn" page, search for a topic and then just pick one of the available pages with the given title.
+    </p>
+    <p>
+        You can also choose the interval you want to receive a new page within.
+    </p>
+    <p>
+        Cool! Now you can visit the <a routerLink="/learn" routerLinkActive="active">Learn</a> page!
+    </p>
+</div>
+<div class="container">
+    <h2>Select an interval</h2>
+    <select name="interval" id="interval" #interval (change)="onIntervalChanged(interval.value)">
+        <option value="2" selected>2 seconds</option>
+        <option value="60">1 minute</option>
+        <option value="3600">1 hour</option>
+    </select>
+</div>
