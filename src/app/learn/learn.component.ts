@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { stringify } from 'querystring';
 import {LearnService} from './learn.service'
 import { HttpErrorResponse } from '@angular/common/http';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-learn',
@@ -18,7 +19,9 @@ export class LearnComponent implements OnInit {
   public pageContent: any;
   
 
-  constructor(private learnService: LearnService) { }
+  constructor(private learnService: LearnService, private titleService: Title) { 
+      this.titleService.setTitle('Learn');
+  }
 
   ngOnInit(): void {
     this.learnService.startConnection();
@@ -61,7 +64,7 @@ export class LearnComponent implements OnInit {
             });
         }
         else {
-          this.error='No data found by given Tpoic.';
+          this.error='No data found by given topic.';
           this.pageContent = '';
         }
       }, (error: HttpErrorResponse) => {

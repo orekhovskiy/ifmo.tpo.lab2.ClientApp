@@ -3,7 +3,7 @@
         <div class="navbar-brand">LearnApp</div>
         <ul class="navbar-nav mr-auto">
             <li *ngFor="let item of menuItems">
-                <a class="nav-link" routerLink="{{item.route}}" routerLinkActive="active">{{item.name}}</a>
+                <a class="nav-link" routerLink="{{item.route}}" routerLinkActive="active" id="{{item.name}}NavLink">{{item.name}}</a>
             </li>
         </ul>
     </nav>

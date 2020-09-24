@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import {Title} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-about',
@@ -8,7 +9,9 @@ import { interval } from 'rxjs';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService:Title) { 
+    this.titleService.setTitle('About');
+  }
 
   ngOnInit(): void {
     localStorage.setItem('interval', '2');
